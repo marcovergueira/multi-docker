@@ -1,0 +1,40 @@
+{
+  "AWSEBDockerrunVersion": 2,
+  "containerDefinitions": [
+    {
+      "name": "client",
+      "image": "marcovergueira/multi-client",
+      "hostname": "client",
+      "memory": 128,
+      "essential": false
+    },
+    { 
+      "name": "server",
+      "image": "marcovergueira/multi-server",
+      "hostname": "api",
+      "memory": 128,
+      "essential": false
+    },
+    { 
+      "name": "worker",
+      "image": "marcovergueira/multi-worker",
+      "hostname": "worker",
+      "memory": 128,
+      "essential": false
+    },
+    { 
+      "name": "nginx",
+      "image": "marcovergueira/multi-nginx",
+      "hostname":"nginx",
+      "memory": 128,
+      "essential": true,
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "containerPort":80
+        }
+      ],
+      "links": ["client", "server"]
+    }
+  ]
+}
