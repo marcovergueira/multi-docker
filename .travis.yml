@@ -10,14 +10,14 @@ script:
   - docker run marcovergueira/react-test npm test -- --coverage
 
 after_success:
-  - docker build -t marcovergueira/multi-client ./client
-  - docker build -t marcovergueira/multi-nginx ./nginx
-  - docker build -t marcovergueira/multi-server ./server
-  - docker build -t marcovergueira/multi-worker ./worker
+  - docker build -t "marcovergueira/multi-client" ./client
+  - docker build -t "marcovergueira/multi-nginx" ./nginx
+  - docker build -t "marcovergueira/multi-server" ./server
+  - docker build -t "marcovergueira/multi-worker" ./worker
 
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin 
 
-  - docker push marcovergueira/multi-client
-  - docker push marcovergueira/multi-nginx
-  - docker push marcovergueira/multi-server
-  - docker push marcovergueira/multi-worker
+  - docker push "marcovergueira/multi-client"
+  - docker push "marcovergueira/multi-nginx"
+  - docker push "marcovergueira/multi-server"
+  - docker push "marcovergueira/multi-worker"
